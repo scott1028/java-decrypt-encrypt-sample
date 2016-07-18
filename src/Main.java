@@ -1,5 +1,3 @@
- package com.taisys;
-
  import javax.crypto.Cipher;
  import javax.crypto.SecretKey;
  import javax.crypto.spec.IvParameterSpec;
@@ -49,7 +47,14 @@
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        String zmkKey = "00 11 22 33 44 55 66 77";
+        if(args.length == 0){
+            System.out.println("command paramter: java Main.class zmkKey inputFileName");
+            return;
+        }
+        String fileName = args[0];
+        String zmkKey = args[1];
+        // String fileName = "./test.zip";
+        // String zmkKey = "00 11 22 33 44 55 66 77";
         byte[] iv = new byte[] { (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00 };
         StringUtil ssdStringUtil = new StringUtil();
         Cipher zmkDecryptCipher = Cipher.getInstance("DESede/CBC/NoPadding");
@@ -59,7 +64,7 @@ public class Main {
 
         //
         HashMap<String, byte[]> map = new HashMap<String, byte[]>();
-        ZipFile zipFile = new ZipFile("./test.zip");
+        ZipFile zipFile = new ZipFile(fileName);
         Enumeration<? extends ZipEntry> entries = zipFile.entries();
         while(entries.hasMoreElements()){
             ZipEntry entry = entries.nextElement();
