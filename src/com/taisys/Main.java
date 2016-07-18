@@ -12,8 +12,8 @@
  import java.util.zip.ZipEntry;
  import java.util.zip.ZipFile;
 
- class SSDStringUtil {
-     public SSDStringUtil() {
+ class StringUtil {
+     public StringUtil() {
      }
 
      public String byteArrayToHex(byte[] bytes) {
@@ -51,7 +51,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         String zmkKey = "00 11 22 33 44 55 66 77";
         byte[] iv = new byte[] { (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00 };
-        SSDStringUtil ssdStringUtil = new SSDStringUtil();
+        StringUtil ssdStringUtil = new StringUtil();
         Cipher zmkDecryptCipher = Cipher.getInstance("DESede/CBC/NoPadding");
         IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
         SecretKey keyDecrypt = new SecretKeySpec(ssdStringUtil.hexToByteArray(zmkKey), "DESede");
